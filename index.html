@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ana Júlia Firmiano | Portfólio</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Barra de Navegação Flutuante -->
+  <header class="navbar">
+    <div class="nav-container">
+      <nav class="nav-menu">
+        <a href="#habilidades" class="nav-link">Habilidades</a>
+        <a href="#projetos" class="nav-link">Projetos</a>
+        <a href="#contato" class="nav-link">Contato</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#contato" class="btn btn-outline-rose btn-sm">Fale Comigo</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Seção Hero (Layout Moderno: Imagem à Esquerda + Informações à Direita) -->
+    <section id="hero" class="hero-section">
+      <div class="container hero-grid">
+        
+        <!-- Lado Esquerdo: Imagem Grande sem Fundo -->
+        <div class="hero-visual">
+          <div class="hero-visual-glow"></div>
+          <img src="pixel.png" alt="Ilustração Pixel Art de Ana Júlia - Engenharia de Dados &amp; Desenvolvimento Web" class="hero-pixel-character">
+        </div>
+
+        <!-- Lado Direito: Nome, Título, Frase de Impacto, Metadados & Ações -->
+        <div class="hero-content">
+          
+          <!-- Nome e Título da Profissão -->
+          <div class="hero-identity-header">
+            <div class="hero-badge">
+              <span class="pulse-dot"></span>
+              <span id="heroStatus">DISPONÍVEL PARA NOVOS PROJETOS</span>
+            </div>
+            <h1 class="hero-name" id="profileName">Ana Júlia Firmiano</h1>
+            <p class="hero-role-title" id="profileRole">Engenheira de Dados &amp; Desenvolvedora Web</p>
+          </div>
+
+          <!-- Frase de Impacto -->
+          <div class="hero-impact-box">
+            <p class="hero-impact-phrase">
+              Criando sistemas com <span class="text-highlight">elegância visual</span> e <span class="text-moss">precisão em dados</span>.
+            </p>
+          </div>
+
+          <!-- Metadados / Informações em Cards com Ícones -->
+          <div class="hero-meta-grid">
+            
+            <div class="meta-card">
+              <div class="meta-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <div class="meta-info">
+                <span class="meta-label">Localização</span>
+                <span class="meta-value" id="profileLocation">Rio de Janeiro, Brasil</span>
+              </div>
+            </div>
+
+            <div class="meta-card">
+              <div class="meta-icon">
+                <span class="status-indicator-dot"></span>
+              </div>
+              <div class="meta-info">
+                <span class="meta-label">Status</span>
+                <span class="meta-value text-moss" id="profileStatus">Disponível para novos projetos</span>
+              </div>
+            </div>
+
+            <div class="meta-card">
+              <div class="meta-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              </div>
+              <div class="meta-info">
+                <span class="meta-label">Especialização</span>
+                <span class="meta-value" id="profileFocus">Engenharia de Dados &amp; Desenvolvimento Web</span>
+              </div>
+            </div>
+
+            <div class="meta-card">
+              <div class="meta-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              </div>
+              <div class="meta-info">
+                <span class="meta-label">Línguas</span>
+                <span class="meta-value" id="profileLanguages">Português, Inglês</span>
+              </div>
+            </div>
+
+            <div class="meta-card span-2">
+              <div class="meta-info">
+                <span class="meta-label">Stack Base</span>
+                <div class="hero-tags-wrapper">
+                  <span class="hero-tag-badge">Python</span>
+                  <span class="hero-tag-badge">SQL</span>
+                  <span class="hero-tag-badge">JavaScript</span>
+                  <span class="hero-tag-badge">HTML/CSS</span>
+                  <span class="hero-tag-badge">Pandas &amp; ETL</span>
+                  <span class="hero-tag-badge">Git &amp; GitHub</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Ações (Botões) -->
+          <div class="hero-actions">
+            <a href="#contato" class="btn btn-primary">Iniciar Contato</a>
+            <a href="#projetos" class="btn btn-secondary">Ver Projetos</a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Seção Habilidades -->
+    <section id="habilidades" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-tag">COMPETÊNCIAS // STACK</span>
+          <h2 class="section-title">Habilidades &amp; Ferramentas</h2>
+          <p class="section-desc">Tecnologias utilizadas no desenvolvimento web, manipulação de bases e modelagem de indicadores.</p>
+        </div>
+
+        <div class="skills-grid" id="skillsContainer"></div>
+      </div>
+    </section>
+
+    <!-- Seção Projetos -->
+    <section id="projetos" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-tag">PORTFÓLIO // PRÁTICA</span>
+          <h2 class="section-title">Projetos em Destaque</h2>
+          <p class="section-desc">Aplicações práticas cobrindo Engenharia de Dados e Interfaces Web.</p>
+        </div>
+
+        <div class="filter-bar" id="categoryFilters">
+          <button class="filter-btn active" data-category="all">Todos</button>
+          <button class="filter-btn" data-category="Dados">Engenharia de Dados</button>
+          <button class="filter-btn" data-category="Web">Desenvolvimento Web</button>
+        </div>
+
+        <div class="projects-grid" id="projectsContainer"></div>
+      </div>
+    </section>
+
+    <!-- Seção Contato -->
+    <section id="contato" class="section">
+      <div class="container">
+        <div class="contact-card">
+          <div class="contact-info">
+            <span class="section-tag">CONEXÃO // CONTATO</span>
+            <h2 class="section-title">Vamos conversar?</h2>
+            <p class="section-desc">Pronta para construir soluções web intuitivas ou estruturar projetos de automação e análise de dados.</p>
+            
+            <div class="contact-direct">
+              <span class="contact-direct-label">E-MAIL PROFISSIONAL</span>
+              <span class="contact-direct-email" id="contactEmailDisplay">anajuliafirmiano1@gmail.com</span>
+            </div>
+
+            <div class="social-links" id="socialLinksContainer"></div>
+          </div>
+
+          <!-- Formulário FormSubmit Integrado -->
+          <form id="contactForm" class="contact-form">
+            <div class="form-group">
+              <label for="name">SEU NOME</label>
+              <input type="text" id="name" name="name" class="form-control" placeholder="Ex: Lucas Silva" required>
+            </div>
+            <div class="form-group">
+              <label for="email">SEU E-MAIL</label>
+              <input type="email" id="email" name="email" class="form-control" placeholder="lucas@exemplo.com" required>
+            </div>
+            <div class="form-group">
+              <label for="message">MENSAGEM OU PROJETO</label>
+              <textarea id="message" name="message" class="form-control" rows="4" placeholder="Descreva brevemente sua necessidade..." required></textarea>
+            </div>
+              <button type="submit" id="submitBtn" class="btn btn-primary btn-full">Enviar Mensagem</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <p id="footerCopy">© 2026 Ana Júlia Ferreira. Desenvolvido com foco e sofisticação.</p>
+      <span class="tech-tag">HTML • CSS • JS • JSON</span>
+    </div>
+  </footer>
+
+  <!-- Modal de Detalhes -->
+  <div id="projectModal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <button id="closeModalBtn" class="modal-close">&times;</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast hidden">
+    <span id="toastMsg">Mensagem enviada com sucesso!</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

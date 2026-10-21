@@ -1,0 +1,71 @@
+{
+  "profile": {
+    "name": "Ana Júlia Firmiano",
+    "avatarImage": "pixel_art.jpeg",
+    "languages": "Português, Inglês",
+    "role": "Engenheira de Dados & Desenvolvedora Web",
+    "status": "Disponível para novos projetos",
+    "bio": "Desenvolvo interfaces web modernas, intuitivas e eficientes, integradas à estruturação de pipelines de dados, automações com Python, Pandas e análise técnica.",
+    "email": "anajuliafirmiano1@gmail.com",
+    "location": "Rio de Janeiro, Brasil",
+    "experience": "+2 anos",
+    "completedProjects": 18,
+    "satisfaction": "100%",
+    "stack": "Python • SQL • JavaScript • HTML/CSS",
+    "focus": "Engenharia de Dados & Desenvolvimento Web"
+  },
+  "skills": [
+    { "name": "Python", "category": "Dados", "level": "Intermediário" },
+    { "name": "Automação & ETL", "category": "Dados", "level": "Avançado" },
+    { "name": "Pandas & Tratamento de Dados", "category": "Dados", "level": "Intermediário" },
+    { "name": "Git & GitHub", "category": "DevOps", "level": "Avançado" },
+    { "name": "Excel Avançado", "category": "Analytics", "level": "Avançado" },
+    { "name": "Desenvolvimento Web (HTML, CSS, JS)", "category": "Web", "level": "Avançado" }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "Pipeline de Extração & ETL",
+      "category": "Dados",
+      "tag": "Automação & ETL",
+      "description": "Fluxo automatizado em Python para ingestão, tratamento e validação de registros brutos, estruturando pipelines limpos e performáticos.",
+      "technologies": ["Python", "ETL", "Pandas", "Git"],
+      "demoUrl": "#",
+      "repoUrl": "https://github.com/anajufirmiano"
+    },
+    {
+      "id": 2,
+      "title": "Gerenciador de Torneios & Tratamento Tabular",
+      "category": "Dados",
+      "tag": "Python & Pandas",
+      "description": "Sistema de chaveamento e consolidação de participantes, manipulando tabelas relacionais e geração de relatórios com Pandas.",
+      "technologies": ["Python", "Pandas", "CSV", "GitHub"],
+      "demoUrl": "#",
+      "repoUrl": "https://github.com/anajufirmiano"
+    },
+    {
+      "id": 3,
+      "title": "Interfaces Web & Landing Pages Responsivas",
+      "category": "Web",
+      "tag": "Desenvolvimento Web",
+      "description": "Construção de aplicações e sites institucionais modernos, acessíveis, otimizados para todos os dispositivos e com código semântico limpo.",
+      "technologies": ["HTML5", "CSS3", "JavaScript", "UI Design"],
+      "demoUrl": "#",
+      "repoUrl": "https://github.com/anajufirmiano"
+    },
+    {
+      "id": 4,
+      "title": "Modelagem de Métricas & Relatórios no Excel",
+      "category": "Analytics",
+      "tag": "Excel Avançado",
+      "description": "Planilhas analíticas dinâmicas, estruturadas com fórmulas complexas, tabelas de controle e painéis de indicadores visuais.",
+      "technologies": ["Excel Avançado", "Fórmulas", "Automação", "Analytics"],
+      "demoUrl": "#",
+      "repoUrl": "https://github.com/anajufirmiano"
+    }
+  ],
+  "socials": [
+    { "name": "GitHub", "url": "https://github.com/anajufirmiano" },
+    { "name": "LinkedIn", "url": "https://www.linkedin.com/in/ana-júlia-ferreira-firmiano-454966258" }
+  ]
+}
