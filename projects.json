@@ -1,1 +1,78 @@
-[]
+[
+  {
+    "id": "anajufirmiano.github.io",
+    "title": "Anajufirmiano.Github.Io",
+    "category": "Desenvolvimento Web",
+    "description": "Portfólio Profissional de Ana Júlia Firmiano - Engenharia de Dados & Desenvolvimento Web",
+    "tags": [
+      "CSS"
+    ],
+    "repoUrl": "https://github.com/anajufirmiano/anajufirmiano.github.io",
+    "deployUrl": "https://anajufirmiano.github.io/",
+    "image": "assets/img/default-cover.png",
+    "featured": true
+  },
+  {
+    "id": "banco-de-dados-academia",
+    "title": "Banco De Dados Academia",
+    "category": "Engenharia de Dados",
+    "description": "Modelagem e implementacao de banco de dados relacional em MySQL para gestao de academia.",
+    "tags": [],
+    "repoUrl": "https://github.com/anajufirmiano/banco-de-dados-academia",
+    "deployUrl": "",
+    "image": "assets/img/default-cover.png",
+    "featured": true
+  },
+  {
+    "id": "bibliotecas",
+    "title": "Bibliotecas",
+    "category": "Engenharia de Dados",
+    "description": "Biblioteca modular em Python para regras de negocio, validacoes cadastrais (CPF, CEP, Telefone, Cartao, Idade) e interface CLI.",
+    "tags": [
+      "Python"
+    ],
+    "repoUrl": "https://github.com/anajufirmiano/bibliotecas",
+    "deployUrl": "",
+    "image": "assets/img/default-cover.png",
+    "featured": true
+  },
+  {
+    "id": "sistema-bancario",
+    "title": "Sistema Bancario",
+    "category": "Engenharia de Dados",
+    "description": "Projeto desenvolvido para o portfólio.",
+    "tags": [
+      "Python"
+    ],
+    "repoUrl": "https://github.com/anajufirmiano/sistema-bancario",
+    "deployUrl": "",
+    "image": "assets/img/default-cover.png",
+    "featured": true
+  },
+  {
+    "id": "Sistemas-de-Artes-Marciais",
+    "title": "Sistemas De Artes Marciais",
+    "category": "Engenharia de Dados",
+    "description": "Trata-se de um script interativo em Python para terminal focado no cadastramento, matriculação e venda de equipamentos para alunos de academia de artes marciais (Jiu-Jitsu, Luta Livre Esportiva e Muay-Thai).",
+    "tags": [
+      "Python"
+    ],
+    "repoUrl": "https://github.com/anajufirmiano/Sistemas-de-Artes-Marciais",
+    "deployUrl": "",
+    "image": "assets/img/default-cover.png",
+    "featured": true
+  },
+  {
+    "id": "gerador-de-senhas-python",
+    "title": "Gerador De Senhas Python",
+    "category": "Engenharia de Dados",
+    "description": "Gerador de senhas seguras em Python desenvolvido no terminal com suporte a caracteres especiais e validação de dados.",
+    "tags": [
+      "Python"
+    ],
+    "repoUrl": "https://github.com/anajufirmiano/gerador-de-senhas-python",
+    "deployUrl": "",
+    "image": "assets/img/default-cover.png",
+    "featured": true
+  }
+]
