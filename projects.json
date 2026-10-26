@@ -1,5 +1,18 @@
 [
   {
+    "id": "pizzaria",
+    "title": "Pizzaria",
+    "category": "Desenvolvimento Web",
+    "description": "Modelo de Landing Page conceitual para Pizzaria Napolitana e alta gastronomia (HTML5, CSS3 responsivo).",
+    "tags": [
+      "HTML"
+    ],
+    "repoUrl": "https://github.com/anajufirmiano/pizzaria",
+    "deployUrl": "",
+    "image": "assets/img/default-cover.png",
+    "featured": true
+  },
+  {
     "id": "anajufirmiano.github.io",
     "title": "Anajufirmiano.Github.Io",
     "category": "Desenvolvimento Web",
