@@ -2,9 +2,9 @@ name: Sincronizar Projetos do GitHub
 
 on:
   schedule:
-    # Executa toda quarta-feira às 11:00 UTC (08:00 no horário de Brasília)
+    # Executa todas as quartas-feiras às 11:00 UTC (08:00 no horário de Brasília)
     - cron: '0 11 * * 3'
-  workflow_dispatch: # Permite que você continue rodando manualmente quando quiser pelo botão
+  workflow_dispatch: # Permite executar manualmente a qualquer momento pelo botão
 
 jobs:
   update-portfolio:
