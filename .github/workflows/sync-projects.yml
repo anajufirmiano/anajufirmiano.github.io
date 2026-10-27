@@ -2,9 +2,9 @@ name: Sincronizar Projetos do GitHub
 
 on:
   schedule:
-    # Executa toda segunda-feira às 08:00 UTC
-    - cron: '0 8 * * 1'
-  workflow_dispatch:
+    # Executa toda quarta-feira às 11:00 UTC (08:00 no horário de Brasília)
+    - cron: '0 11 * * 3'
+  workflow_dispatch: # Permite que você continue rodando manualmente quando quiser pelo botão
 
 jobs:
   update-portfolio:
@@ -21,7 +21,13 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Instalar dependências
+        run: |
+          pip install requests
+
       - name: Rodar script de atualização
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/update_projects.py
 
       - name: Salvar alterações no repositório
