@@ -1,9 +1,8 @@
 /**
- * PORTFÓLIO - SCRIPT BLINDADO CONTRA ERROS
+ * PORTFÓLIO - SCRIPT ULTRA BLINDADO
  * script.js
  */
 
-// Dados padrão garantidos na memória
 const dadosPadrao = {
   profile: {
     name: "Ana Júlia Firmiano",
@@ -76,10 +75,14 @@ const dadosPadrao = {
   ]
 };
 
-// Clona os dados padrão para manter intactos
-let portfolioData = JSON.parse(JSON.stringify(dadosPadrao));
+// Inicializa a estrutura garantindo que os arrays padrão sempre existam
+let portfolioData = {
+  profile: { ...dadosPadrao.profile },
+  skills: [...dadosPadrao.skills],
+  projects: [...dadosPadrao.projects],
+  socials: [...dadosPadrao.socials]
+};
 
-// Função de preenchimento seguro: nunca quebra a execução se o ID não existir no HTML
 function setText(id, text) {
   const el = document.getElementById(id);
   if (el && text !== undefined && text !== null) {
@@ -87,34 +90,36 @@ function setText(id, text) {
   }
 }
 
-// Inicialização
 document.addEventListener("DOMContentLoaded", async () => {
-  await carregarDados();
+  // 1. Renderiza a tela IMEDIATAMENTE com os dados padrão (nunca fica vazia)
   renderizarInterface();
   configurarEventos();
+
+  // 2. Tenta buscar projetos atualizados em segundo plano
+  await carregarProjetosExternos();
 });
 
-async function carregarDados() {
+async function carregarProjetosExternos() {
   try {
     const response = await fetch("projects.json");
-    if (response.ok) {
-      const json = await response.json();
-      
-      // Mesclagem segura: se vierem projetos do arquivo, atualiza APENAS os projetos
-      // preservando skills, profile e socials do dadosPadrao
-      if (json && json.projects && json.projects.length > 0) {
-        portfolioData.projects = json.projects;
-      } else if (Array.isArray(json) && json.length > 0) {
-        portfolioData.projects = json;
-      }
+    if (!response.ok) return;
 
-      // Se no futuro você adicionar perfil ou skills no JSON, ele atualiza também
-      if (json.profile) portfolioData.profile = { ...portfolioData.profile, ...json.profile };
-      if (json.skills && json.skills.length > 0) portfolioData.skills = json.skills;
-      if (json.socials && json.socials.length > 0) portfolioData.socials = json.socials;
+    const json = await response.json();
+    let listaProjetos = [];
+
+    if (Array.isArray(json)) {
+      listaProjetos = json;
+    } else if (json && Array.isArray(json.projects)) {
+      listaProjetos = json.projects;
+    }
+
+    // Se encontrou projetos válidos, atualiza apenas a lista de projetos e redesenha os cards
+    if (listaProjetos.length > 0) {
+      portfolioData.projects = listaProjetos;
+      renderizarProjetos(portfolioData.projects);
     }
   } catch (err) {
-    console.warn("Carregando dados locais de fallback devido a erro de fetch:", err);
+    console.warn("Mantendo dados locais padrão:", err);
   }
 }
 
@@ -128,7 +133,6 @@ function renderizarInterface() {
     .slice(0, 2)
     .toUpperCase();
 
-  // Cabeçalho e Perfil
   setText("logoInitials", iniciais);
   setText("logoName", profile.name);
   setText("profileName", profile.name);
@@ -139,7 +143,6 @@ function renderizarInterface() {
   setText("profileStack", profile.stack);
   setText("profileFocus", profile.focus);
 
-  // Avatar com tratamento de erro e imagem
   const avatarEl = document.getElementById("avatarInitials");
   if (avatarEl) {
     if (profile.avatarImage) {
@@ -149,18 +152,14 @@ function renderizarInterface() {
     }
   }
 
-  // Hero Section
   setText("heroStatus", profile.status);
   setText("heroBio", profile.bio);
   setText("metricExp", profile.experience);
   setText("metricProjects", profile.completedProjects);
   setText("metricSat", profile.satisfaction);
-
-  // Contato e Rodapé
   setText("contactEmailDisplay", profile.email);
   setText("footerCopy", `© ${new Date().getFullYear()} ${profile.name}. Todos os direitos reservados.`);
 
-  // Renderizações principais
   renderizarSkills(skills || []);
   renderizarProjetos(projects || []);
   renderizarSociais(socials || []);
@@ -171,12 +170,12 @@ function renderizarSkills(skills) {
   if (!container) return;
   container.innerHTML = "";
 
-  skills.forEach(skill => {
+  (skills || []).forEach(skill => {
     const el = document.createElement("div");
     el.className = "skill-card";
     el.innerHTML = `
-      <span class="skill-name">${skill.name}</span>
-      <span class="skill-badge">${skill.level}</span>
+      <span class="skill-name">${skill.name || ""}</span>
+      <span class="skill-badge">${skill.level || ""}</span>
     `;
     container.appendChild(el);
   });
@@ -187,11 +186,16 @@ function renderizarProjetos(projects, filtro = "all") {
   if (!container) return;
   container.innerHTML = "";
 
-  const lista = filtro === "all"
-    ? projects
-    : projects.filter(p => (p.category || "").toLowerCase() === filtro.toLowerCase());
+  const lista = (projects || []).filter(p => {
+    if (filtro === "all") return true;
+    return (p.category || "").toLowerCase() === filtro.toLowerCase();
+  });
 
   lista.forEach(project => {
+    const techs = Array.isArray(project.technologies) 
+      ? project.technologies 
+      : (Array.isArray(project.tags) ? project.tags : []);
+
     const el = document.createElement("div");
     el.className = "project-card";
     el.innerHTML = `
@@ -200,7 +204,7 @@ function renderizarProjetos(projects, filtro = "all") {
           <div class="project-thumb-dots">
             <span></span><span></span><span></span>
           </div>
-          <span class="project-thumb-tag">${project.tag || "Projeto"}</span>
+          <span class="project-thumb-tag">${project.tag || project.category || "Projeto"}</span>
         </div>
         <div class="project-thumb-visual">
           <div class="visual-graphic-lines">
@@ -212,11 +216,11 @@ function renderizarProjetos(projects, filtro = "all") {
         </div>
       </div>
 
-      <h3 class="project-title">${project.title}</h3>
-      <p class="project-desc">${project.description}</p>
+      <h3 class="project-title">${project.title || "Projeto"}</h3>
+      <p class="project-desc">${project.description || ""}</p>
       
       <div class="project-techs">
-        ${(project.technologies || []).map(t => `<span class="tech-tag">${t}</span>`).join("")}
+        ${techs.map(t => `<span class="tech-tag">${t}</span>`).join("")}
       </div>
 
       <div class="project-actions">
@@ -229,10 +233,9 @@ function renderizarProjetos(projects, filtro = "all") {
     container.appendChild(el);
   });
 
-  // Eventos de clique nos modais
   document.querySelectorAll(".open-modal-btn").forEach(btn => {
     btn.addEventListener("click", () => {
-      abrirModal(parseInt(btn.dataset.id) || btn.dataset.id);
+      abrirModal(btn.dataset.id);
     });
   });
 }
@@ -242,7 +245,7 @@ function renderizarSociais(socials) {
   if (!container) return;
   container.innerHTML = "";
 
-  socials.forEach(soc => {
+  (socials || []).forEach(soc => {
     const a = document.createElement("a");
     a.href = soc.url;
     a.target = "_blank";
@@ -260,15 +263,19 @@ function abrirModal(id) {
   const content = document.getElementById("modalContent");
   if (!modal || !content) return;
 
+  const techs = Array.isArray(projeto.technologies) 
+    ? projeto.technologies 
+    : (Array.isArray(projeto.tags) ? projeto.tags : []);
+
   content.innerHTML = `
-    <span class="section-tag">${projeto.category} // ${projeto.tag}</span>
-    <h2 style="font-size: 1.6rem; color: var(--beige); margin: 6px 0 16px 0;">${projeto.title}</h2>
-    <p style="color: var(--text-secondary); margin-bottom: 22px; font-size: 0.96rem;">${projeto.description}</p>
+    <span class="section-tag">${projeto.category || "Projeto"} // ${projeto.tag || ""}</span>
+    <h2 style="font-size: 1.6rem; color: var(--beige); margin: 6px 0 16px 0;">${projeto.title || ""}</h2>
+    <p style="color: var(--text-secondary); margin-bottom: 22px; font-size: 0.96rem;">${projeto.description || ""}</p>
     
     <div style="margin-bottom: 24px;">
       <h4 style="font-size: 0.76rem; color: var(--moss-green); font-family: var(--font-mono); margin-bottom: 10px;">STACK UTILIZADA:</h4>
       <div class="project-techs">
-        ${(projeto.technologies || []).map(t => `<span class="tech-tag">${t}</span>`).join("")}
+        ${techs.map(t => `<span class="tech-tag">${t}</span>`).join("")}
       </div>
     </div>
 
@@ -282,7 +289,6 @@ function abrirModal(id) {
 }
 
 function configurarEventos() {
-  // Filtros
   const botoesFiltro = document.querySelectorAll(".filter-btn");
   botoesFiltro.forEach(btn => {
     btn.addEventListener("click", () => {
@@ -292,7 +298,6 @@ function configurarEventos() {
     });
   });
 
-  // Copiar E-mail
   const copyBtn = document.getElementById("copyEmailBtn");
   if (copyBtn) {
     copyBtn.addEventListener("click", () => {
@@ -301,10 +306,8 @@ function configurarEventos() {
     });
   }
 
-  // Envio via Google Apps Script
   const form = document.getElementById("contactForm");
   const submitBtn = document.getElementById("submitBtn");
-
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwrPiVg-DLbMgu8AAivGrk7xcKWBaE6_RKbFzkVcpo8Hy1nMl5cgBbzBRhzlXZZp1Dc/exec";
 
   if (form) {
@@ -346,7 +349,6 @@ function configurarEventos() {
     });
   }
 
-  // Fechar Modal
   const modal = document.getElementById("projectModal");
   const closeBtn = document.getElementById("closeModalBtn");
   if (closeBtn && modal) {
