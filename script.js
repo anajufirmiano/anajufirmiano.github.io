@@ -76,7 +76,8 @@ const dadosPadrao = {
   ]
 };
 
-let portfolioData = dadosPadrao;
+// Clona os dados padrão para manter intactos
+let portfolioData = JSON.parse(JSON.stringify(dadosPadrao));
 
 // Função de preenchimento seguro: nunca quebra a execução se o ID não existir no HTML
 function setText(id, text) {
@@ -98,12 +99,22 @@ async function carregarDados() {
     const response = await fetch("projects.json");
     if (response.ok) {
       const json = await response.json();
+      
+      // Mesclagem segura: se vierem projetos do arquivo, atualiza APENAS os projetos
+      // preservando skills, profile e socials do dadosPadrao
       if (json && json.projects && json.projects.length > 0) {
-        portfolioData = json;
+        portfolioData.projects = json.projects;
+      } else if (Array.isArray(json) && json.length > 0) {
+        portfolioData.projects = json;
       }
+
+      // Se no futuro você adicionar perfil ou skills no JSON, ele atualiza também
+      if (json.profile) portfolioData.profile = { ...portfolioData.profile, ...json.profile };
+      if (json.skills && json.skills.length > 0) portfolioData.skills = json.skills;
+      if (json.socials && json.socials.length > 0) portfolioData.socials = json.socials;
     }
   } catch (err) {
-    // Permanece com dadosPadrao caso o navegador bloqueie fetch local (CORS)
+    console.warn("Carregando dados locais de fallback devido a erro de fetch:", err);
   }
 }
 
@@ -221,7 +232,7 @@ function renderizarProjetos(projects, filtro = "all") {
   // Eventos de clique nos modais
   document.querySelectorAll(".open-modal-btn").forEach(btn => {
     btn.addEventListener("click", () => {
-      abrirModal(parseInt(btn.dataset.id));
+      abrirModal(parseInt(btn.dataset.id) || btn.dataset.id);
     });
   });
 }
@@ -242,7 +253,7 @@ function renderizarSociais(socials) {
 }
 
 function abrirModal(id) {
-  const projeto = portfolioData.projects.find(p => p.id === id);
+  const projeto = portfolioData.projects.find(p => String(p.id) === String(id));
   if (!projeto) return;
 
   const modal = document.getElementById("projectModal");
@@ -257,7 +268,7 @@ function abrirModal(id) {
     <div style="margin-bottom: 24px;">
       <h4 style="font-size: 0.76rem; color: var(--moss-green); font-family: var(--font-mono); margin-bottom: 10px;">STACK UTILIZADA:</h4>
       <div class="project-techs">
-        ${(project.technologies || []).map(t => `<span class="tech-tag">${t}</span>`).join("")}
+        ${(projeto.technologies || []).map(t => `<span class="tech-tag">${t}</span>`).join("")}
       </div>
     </div>
 
@@ -290,11 +301,10 @@ function configurarEventos() {
     });
   }
 
-  // Envio via Google Apps Script usando URL-encoded (à prova de falhas)
+  // Envio via Google Apps Script
   const form = document.getElementById("contactForm");
   const submitBtn = document.getElementById("submitBtn");
 
-  // URL do Apps Script
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwrPiVg-DLbMgu8AAivGrk7xcKWBaE6_RKbFzkVcpo8Hy1nMl5cgBbzBRhzlXZZp1Dc/exec";
 
   if (form) {
