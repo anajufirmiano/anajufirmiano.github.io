@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 async function carregarDados() {
   try {
-    const response = await fetch("data.json");
+    const response = await fetch("projects.json");
     if (response.ok) {
       const json = await response.json();
       if (json && json.projects && json.projects.length > 0) {
@@ -294,7 +294,7 @@ function configurarEventos() {
   const form = document.getElementById("contactForm");
   const submitBtn = document.getElementById("submitBtn");
 
-  // Cole aqui a sua URL do Apps Script:
+  // URL do Apps Script
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwrPiVg-DLbMgu8AAivGrk7xcKWBaE6_RKbFzkVcpo8Hy1nMl5cgBbzBRhzlXZZp1Dc/exec";
 
   if (form) {
@@ -307,7 +307,6 @@ function configurarEventos() {
         submitBtn.innerText = "Enviando...";
       }
 
-      // Converte os dados para FormData padrão
       const formData = new URLSearchParams();
       formData.append("name", document.getElementById("name").value);
       formData.append("email", document.getElementById("email").value);
@@ -323,7 +322,6 @@ function configurarEventos() {
           body: formData.toString()
         });
 
-        // Como no-cors mascara o status HTTP, a conclusão do fetch indica que a requisição partiu com sucesso
         exibirToast("Mensagem enviada com sucesso!");
         form.reset();
       } catch (error) {
