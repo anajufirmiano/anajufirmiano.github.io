@@ -286,6 +286,7 @@ a {
   border-left: 3px solid var(--moss-green);
   background: linear-gradient(90deg, rgba(10, 51, 35, 0.45) 0%, rgba(16, 86, 102, 0.15) 100%);
   border-radius: 0 14px 14px 0;
+  margin-top: 14px;
 }
 
 .hero-impact-phrase {
@@ -982,19 +983,18 @@ a {
   }
 
   .hero-section {
-    padding: 40px 0 55px 0;
+    padding: 35px 0 50px 0;
   }
 
-  /* Disposição Mobile: Avatar alinhado lado a lado com Nome, Título e Disponibilidade */
+  /* Disposição Mobile: Avatar lado a lado com Nome, Título, Disponibilidade E Frase de Efeito */
   .hero-grid {
     display: grid;
     grid-template-columns: minmax(110px, 140px) 1fr;
     grid-template-areas:
       "visual identity"
-      "impact impact"
       "meta meta"
       "actions actions";
-    gap: 20px 16px;
+    gap: 18px 16px;
     align-items: center;
   }
 
@@ -1013,16 +1013,16 @@ a {
   }
 
   .hero-visual-glow {
-    width: 140px;
-    height: 140px;
-    filter: blur(22px);
+    width: 130px;
+    height: 130px;
+    filter: blur(20px);
   }
 
   .hero-pixel-character {
     width: 100%;
     max-width: 140px;
     height: auto;
-    max-height: 190px;
+    max-height: 220px;
     flex-shrink: 0;
     object-fit: contain;
     animation: heroFloatMobile 5.5s ease-in-out infinite;
@@ -1037,31 +1037,38 @@ a {
   }
 
   .hero-badge {
-    margin-bottom: 8px;
-    font-size: 0.68rem;
-    padding: 4px 10px;
+    margin-bottom: 6px;
+    font-size: 0.65rem;
+    padding: 3px 9px;
     max-width: 100%;
     white-space: normal;
     letter-spacing: 0.03em;
   }
 
   .hero-name {
-    font-size: 1.85rem;
+    font-size: 1.7rem;
     line-height: 1.15;
     word-break: break-word;
     overflow-wrap: break-word;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
   }
 
   .hero-role-title {
-    font-size: 0.92rem;
-    line-height: 1.3;
+    font-size: 0.88rem;
+    line-height: 1.25;
   }
 
   .hero-impact-box {
-    grid-area: impact;
-    width: 100%;
-    margin-top: 2px;
+    padding: 8px 12px;
+    margin-top: 8px;
+    border-left: 2px solid var(--moss-green);
+    border-radius: 0 10px 10px 0;
+  }
+
+  .hero-impact-phrase {
+    font-size: 0.82rem;
+    line-height: 1.35;
+    font-weight: 500;
   }
 
   .hero-meta-grid {
@@ -1109,56 +1116,60 @@ a {
 
 @media (max-width: 480px) {
   .hero-section {
-    padding: 30px 0 45px 0;
+    padding: 26px 0 40px 0;
   }
 
   .hero-grid {
-    grid-template-columns: minmax(90px, 115px) 1fr;
-    gap: 16px 12px;
+    grid-template-columns: minmax(95px, 115px) 1fr;
+    gap: 14px 12px;
+    align-items: center;
   }
 
   .hero-visual-glow {
-    width: 100px;
-    height: 100px;
-    filter: blur(16px);
+    width: 95px;
+    height: 95px;
+    filter: blur(15px);
   }
 
   .hero-pixel-character {
     max-width: 115px;
-    max-height: 160px;
+    max-height: 180px;
   }
 
   .hero-badge {
-    font-size: 0.6rem;
-    padding: 3px 8px;
-    gap: 5px;
+    font-size: 0.58rem;
+    padding: 2px 7px;
+    gap: 4px;
     margin-bottom: 4px;
     letter-spacing: 0.02em;
   }
 
   .pulse-dot {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
   }
 
   .hero-name {
-    font-size: 1.45rem;
+    font-size: 1.35rem;
     line-height: 1.15;
     margin-bottom: 2px;
   }
 
   .hero-role-title {
-    font-size: 0.78rem;
+    font-size: 0.74rem;
     line-height: 1.25;
   }
 
   .hero-impact-box {
-    padding: 12px 14px;
+    padding: 5px 8px;
+    margin-top: 6px;
+    border-left: 2px solid var(--moss-green);
+    border-radius: 0 8px 8px 0;
   }
 
   .hero-impact-phrase {
-    font-size: 1rem;
-    line-height: 1.4;
+    font-size: 0.76rem;
+    line-height: 1.28;
   }
 
   .nav-container {
