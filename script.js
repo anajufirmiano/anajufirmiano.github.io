@@ -214,6 +214,29 @@ function renderizarProjetos(projects, filtro = "all") {
           </div>
           <span class="visual-badge-category">${project.category || "Geral"}</span>
         </div>
+      `
+       `
+        <div class="visual-fallback">
+          <div class="visual-graphic-lines">
+            <div class="v-line w-80"></div>
+            <div class="v-line rose"></div>
+            <div class="v-line w-50"></div>
+          </div>
+          <span class="visual-badge-category">${project.category || "Geral"}</span>
+        </div>
+      `;
+
+    el.innerHTML = `
+      <div class="project-thumb-box">
+        <div class="project-thumb-top">
+          <div class="project-thumb-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <span class="project-thumb-tag">${mainTag}</span>
+        </div>
+        <div class="project-thumb-visual">
+          ${visualContent}
+        </div>
       </div>
 
       <h3 class="project-title">${project.title || "Projeto"}</h3>
@@ -224,10 +247,12 @@ function renderizarProjetos(projects, filtro = "all") {
       </div>
 
       <div class="project-actions">
-        <button class="link-btn open-modal-btn" data-id="${project.id}">
+        <button class="link-btn open-modal-btn" data-id="${project.id}" onclick="event.stopPropagation();">
           Ver Detalhes &rarr;
         </button>
-        <a href="${project.repoUrl || '#'}" target="_blank" class="link-btn">Repositório</a>
+        <a href="${project.repoUrl || '#'}" target="_blank" rel="noopener noreferrer" class="link-btn repo-btn" onclick="event.stopPropagation();">
+          Repositório
+        </a>
       </div>
     `;
     container.appendChild(el);
@@ -249,6 +274,7 @@ function renderizarSociais(socials) {
     const a = document.createElement("a");
     a.href = soc.url;
     a.target = "_blank";
+    a.rel = "noopener noreferrer";
     a.className = "social-pill";
     a.innerText = soc.name;
     container.appendChild(a);
@@ -280,8 +306,8 @@ function abrirModal(id) {
     </div>
 
     <div style="display: flex; gap: 14px; margin-top: 10px;">
-      <a href="${projeto.demoUrl || '#'}" target="_blank" class="btn btn-primary btn-sm">Demonstração</a>
-      <a href="${projeto.repoUrl || '#'}" target="_blank" class="btn btn-secondary btn-sm">Ver no GitHub</a>
+      ${demoUrl && demoUrl !== "#" ? `<a href="${demoUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Demonstração</a>` : ''}
+      <a href="${projeto.repoUrl || '#'}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Ver no GitHub</a>
     </div>
   `;
 

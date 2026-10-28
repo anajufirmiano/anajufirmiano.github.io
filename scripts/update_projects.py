@@ -6,9 +6,9 @@ import urllib.request
 GITHUB_USERNAME = "anajufirmiano"
 JSON_PATH = "projects.json"
 
-# Palavras-chave para categorização
-DATA_KEYWORDS = {"python", "sql", "pandas", "data", "etl", "csv", "jupyter", "analysis", "pipeline"}
-WEB_KEYWORDS = {"html", "css", "javascript", "js", "web", "frontend", "portfolio", "react"}
+# Palavras-chave para categorização automática estrita
+DATA_KEYWORDS = {"python", "sql", "pandas", "etl", "csv", "jupyter", "scrap", "data", "pipeline"}
+WEB_KEYWORDS = {"html", "css", "javascript", "js", "react", "web", "frontend"}
 
 def get_repos():
     url = f"https://api.github.com/users/{GITHUB_USERNAME}/repos?sort=created&per_page=100"
