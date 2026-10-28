@@ -1,7 +1,7 @@
 {
   "projects": [
     {
-      "id": 1435048907,
+      "id": "pipeline-clima-postgresql",
       "title": "Pipeline Clima Postgresql",
       "category": "Engenharia de Dados",
       "tag": "Automação & ETL",
@@ -38,8 +38,8 @@
         "CSS3",
         "JavaScript"
       ],
-      "demoUrl": "",
-      "deployUrl": "",
+      "demoUrl": "https://model-barbearia.netlify.app",
+      "deployUrl": "https://model-barbearia.netlify.app",
       "repoUrl": "https://github.com/anajufirmiano/barbearia",
       "image": "",
       "featured": true
@@ -60,133 +60,9 @@
         "CSS3",
         "JavaScript"
       ],
-      "demoUrl": "",
-      "deployUrl": "",
+      "demoUrl": "https://modelpizzaria.netlify.app",
+      "deployUrl": "https://modelpizzaria.netlify.app",
       "repoUrl": "https://github.com/anajufirmiano/pizzaria",
-      "image": "",
-      "featured": true
-    },
-    {
-      "id": "anajufirmiano.github.io",
-      "title": "Portfólio Pessoal",
-      "category": "Desenvolvimento Web",
-      "tag": "Portfólio Web",
-      "description": "Portfólio Profissional de Ana Júlia Firmiano - Engenharia de Dados & Desenvolvimento Web com design escuro e responsivo.",
-      "technologies": [
-        "HTML5",
-        "CSS3",
-        "JavaScript"
-      ],
-      "tags": [
-        "HTML5",
-        "CSS3",
-        "JavaScript"
-      ],
-      "demoUrl": "https://anajufirmiano.github.io/",
-      "deployUrl": "https://anajufirmiano.github.io/",
-      "repoUrl": "https://github.com/anajufirmiano/anajufirmiano.github.io",
-      "image": "",
-      "featured": true
-    },
-    {
-      "id": "banco-de-dados-academia",
-      "title": "Banco de Dados Academia",
-      "category": "Engenharia de Dados",
-      "tag": "Modelagem SQL & MySQL",
-      "description": "Modelagem e implementação de banco de dados relacional em MySQL para gestão e controle de academia.",
-      "technologies": [
-        "SQL",
-        "MySQL",
-        "Modelagem Relacional"
-      ],
-      "tags": [
-        "SQL",
-        "MySQL",
-        "Modelagem Relacional"
-      ],
-      "demoUrl": "",
-      "deployUrl": "",
-      "repoUrl": "https://github.com/anajufirmiano/banco-de-dados-academia",
-      "image": "",
-      "featured": true
-    },
-    {
-      "id": "bibliotecas",
-      "title": "Bibliotecas Utilitárias",
-      "category": "Engenharia de Dados",
-      "tag": "Módulos Python & CLI",
-      "description": "Biblioteca modular em Python para regras de negócio, validações cadastrais (CPF, CEP, Telefone, Cartão, Idade) e interface CLI.",
-      "technologies": [
-        "Python",
-        "CLI",
-        "Validação"
-      ],
-      "tags": [
-        "Python",
-        "CLI",
-        "Validação"
-      ],
-      "demoUrl": "",
-      "deployUrl": "",
-      "repoUrl": "https://github.com/anajufirmiano/bibliotecas",
-      "image": "",
-      "featured": true
-    },
-    {
-      "id": "sistema-bancario",
-      "title": "Sistema Bancário",
-      "category": "Engenharia de Dados",
-      "tag": "Python & Regras de Negócio",
-      "description": "Sistema bancário simulado com operações de depósito, saque, emissão de extrato e validação cadastral.",
-      "technologies": [
-        "Python"
-      ],
-      "tags": [
-        "Python"
-      ],
-      "demoUrl": "",
-      "deployUrl": "",
-      "repoUrl": "https://github.com/anajufirmiano/sistema-bancario",
-      "image": "",
-      "featured": true
-    },
-    {
-      "id": "Sistemas-de-Artes-Marciais",
-      "title": "Sistemas de Artes Marciais",
-      "category": "Engenharia de Dados",
-      "tag": "Gestão & Automação CLI",
-      "description": "Script interativo em Python para terminal focado no cadastramento, matriculação e venda de equipamentos para alunos de artes marciais.",
-      "technologies": [
-        "Python",
-        "CLI"
-      ],
-      "tags": [
-        "Python",
-        "CLI"
-      ],
-      "demoUrl": "",
-      "deployUrl": "",
-      "repoUrl": "https://github.com/anajufirmiano/Sistemas-de-Artes-Marciais",
-      "image": "",
-      "featured": true
-    },
-    {
-      "id": "gerador-de-senhas-python",
-      "title": "Gerador de Senhas",
-      "category": "Engenharia de Dados",
-      "tag": "Segurança & Utilitários",
-      "description": "Gerador de senhas seguras em Python desenvolvido no terminal com suporte a caracteres especiais e validação de entropia.",
-      "technologies": [
-        "Python",
-        "Segurança"
-      ],
-      "tags": [
-        "Python",
-        "Segurança"
-      ],
-      "demoUrl": "",
-      "deployUrl": "",
-      "repoUrl": "https://github.com/anajufirmiano/gerador-de-senhas-python",
       "image": "",
       "featured": true
     }

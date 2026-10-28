@@ -38,7 +38,9 @@ const dadosPadrao = {
       tags: ["Python", "PostgreSQL", "ETL"],
       demoUrl: "",
       deployUrl: "",
-      repoUrl: "https://github.com/anajufirmiano/pipeline-clima-postgresql"
+      repoUrl: "https://github.com/anajufirmiano/pipeline-clima-postgresql",
+      image: "",
+      featured: true
     },
     {
       id: "barbearia",
@@ -48,9 +50,11 @@ const dadosPadrao = {
       description: "Modelo conceitual de Landing Page para Barbearia com tabela de serviços e agendamento via WhatsApp (HTML5, CSS3 responsivo).",
       technologies: ["HTML5", "CSS3", "JavaScript"],
       tags: ["HTML5", "CSS3", "JavaScript"],
-      demoUrl: "",
-      deployUrl: "",
-      repoUrl: "https://github.com/anajufirmiano/barbearia"
+      demoUrl: "https://model-barbearia.netlify.app",
+      deployUrl: "https://model-barbearia.netlify.app",
+      repoUrl: "https://github.com/anajufirmiano/barbearia",
+      image: "",
+      featured: true
     },
     {
       id: "pizzaria",
@@ -60,21 +64,11 @@ const dadosPadrao = {
       description: "Modelo de Landing Page conceitual para Pizzaria Napolitana e alta gastronomia (HTML5, CSS3 responsivo).",
       technologies: ["HTML5", "CSS3", "JavaScript"],
       tags: ["HTML5", "CSS3", "JavaScript"],
-      demoUrl: "",
-      deployUrl: "",
-      repoUrl: "https://github.com/anajufirmiano/pizzaria"
-    },
-    {
-      id: "anajufirmiano.github.io",
-      title: "Portfólio Pessoal",
-      category: "Desenvolvimento Web",
-      tag: "Portfólio Web",
-      description: "Portfólio Profissional de Ana Júlia Firmiano - Engenharia de Dados & Desenvolvimento Web com design escuro e responsivo.",
-      technologies: ["HTML5", "CSS3", "JavaScript"],
-      tags: ["HTML5", "CSS3", "JavaScript"],
-      demoUrl: "https://anajufirmiano.github.io/",
-      deployUrl: "https://anajufirmiano.github.io/",
-      repoUrl: "https://github.com/anajufirmiano/anajufirmiano.github.io"
+      demoUrl: "https://modelpizzaria.netlify.app",
+      deployUrl: "https://modelpizzaria.netlify.app",
+      repoUrl: "https://github.com/anajufirmiano/pizzaria",
+      image: "",
+      featured: true
     }
   ],
   socials: [
@@ -125,13 +119,16 @@ async function carregarProjetosExternos() {
     }
 
     if (listaProjetos.length > 0) {
-      portfolioData.projects = listaProjetos;
+      // Garante exclusão do portfólio pessoal e projetos não desejados caso persistam em cache antigo
+      portfolioData.projects = listaProjetos.filter(
+        p => p.id !== "anajufirmiano.github.io" && !String(p.title).toLowerCase().includes("portfólio pessoal")
+      );
 
       // Respeita o filtro ativo no momento
       const activeBtn = document.querySelector(".filter-btn.active");
       const filtroAtivo = activeBtn ? activeBtn.dataset.category : "all";
       renderizarProjetos(portfolioData.projects, filtroAtivo);
-      console.log(`[Portfólio] Sucesso: ${listaProjetos.length} projetos carregados de projects.json.`);
+      console.log(`[Portfólio] Sucesso: ${portfolioData.projects.length} projetos carregados de projects.json.`);
     } else {
       console.warn("[Portfólio] projects.json carregado, mas a lista de projetos retornou vazia.");
     }
@@ -241,7 +238,8 @@ function renderizarProjetos(projects, filtro = "all") {
 
     const mainTag = project.tag || (techs.length > 0 ? techs[0] : (project.category || "Projeto"));
     const repoUrl = project.repoUrl || project.repo_url || project.github_url || "#";
-    const demoUrl = project.demoUrl || project.deployUrl || project.demo_url || "";
+    const siteUrl = project.demoUrl || project.deployUrl || project.demo_url || "";
+    const hasSite = Boolean(siteUrl && siteUrl.trim() !== "" && siteUrl !== "#");
     const thumbImg = (project.image && project.image !== "assets/img/default-cover.png") ? project.image : (project.thumbnail || "");
 
     const fallbackVisual = `
@@ -290,9 +288,10 @@ function renderizarProjetos(projects, filtro = "all") {
         <button type="button" class="link-btn open-modal-btn" data-id="${project.id}" onclick="event.stopPropagation(); abrirModal('${project.id}');">
           Ver Detalhes &rarr;
         </button>
-        <a href="${repoUrl}" target="_blank" rel="noopener noreferrer" class="link-btn repo-btn" onclick="event.stopPropagation();">
-          Repositório
-        </a>
+        <div class="project-links-group" style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+          ${hasSite ? `<a href="${siteUrl}" target="_blank" rel="noopener noreferrer" class="link-btn site-btn" onclick="event.stopPropagation();">Acessar Site &nearr;</a>` : ""}
+          <a href="${repoUrl}" target="_blank" rel="noopener noreferrer" class="link-btn repo-btn" onclick="event.stopPropagation();">Repositório</a>
+        </div>
       </div>
     `;
     container.appendChild(el);
@@ -330,8 +329,9 @@ function abrirModal(id) {
     ? projeto.technologies 
     : (Array.isArray(projeto.tags) ? projeto.tags : []);
 
-  const demoUrl = projeto.demoUrl || projeto.deployUrl || projeto.demo_url || "";
+  const siteUrl = projeto.demoUrl || projeto.deployUrl || projeto.demo_url || "";
   const repoUrl = projeto.repoUrl || projeto.repo_url || projeto.github_url || "#";
+  const hasSite = Boolean(siteUrl && siteUrl.trim() !== "" && siteUrl !== "#");
 
   content.innerHTML = `
     <span class="section-tag">${projeto.category || "Projeto"} // ${projeto.tag || ""}</span>
@@ -346,8 +346,8 @@ function abrirModal(id) {
     </div>
 
     <div style="display: flex; gap: 14px; margin-top: 10px; flex-wrap: wrap;">
-      ${demoUrl && demoUrl !== "#" ? `<a href="${demoUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Demonstração</a>` : ""}
-      <a href="${repoUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Ver no GitHub</a>
+      ${hasSite ? `<a href="${siteUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Acessar Site</a>` : ""}
+      <a href="${repoUrl}" target="_blank" rel="noopener noreferrer" class="btn ${hasSite ? 'btn-secondary' : 'btn-primary'} btn-sm">Ver no GitHub</a>
     </div>
   `;
 
