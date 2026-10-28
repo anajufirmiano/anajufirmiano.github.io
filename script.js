@@ -6,7 +6,7 @@
 const dadosPadrao = {
   profile: {
     name: "Ana Júlia Firmiano",
-    avatarImage: "pixel_art.jpeg",
+    avatarImage: "pixel.png",
     languages: "Português, Inglês",
     role: "Engenheira de Dados & Desenvolvedora Web",
     status: "Disponível para novos projetos",
@@ -29,44 +29,52 @@ const dadosPadrao = {
   ],
   projects: [
     {
-      id: 1,
-      title: "Pipeline de Extração & ETL",
-      category: "Dados",
+      id: "pipeline-clima-postgresql",
+      title: "Pipeline Clima Postgresql",
+      category: "Engenharia de Dados",
       tag: "Automação & ETL",
-      description: "Fluxo automatizado em Python para ingestão, tratamento e validação de registros brutos, estruturando pipelines limpos e performáticos.",
-      technologies: ["Python", "ETL", "Pandas", "Git"],
-      demoUrl: "#",
-      repoUrl: "https://github.com/anajufirmiano"
+      description: "Pipeline automatizado para coleta, ingestão e modelagem de dados meteorológicos em banco de dados PostgreSQL.",
+      technologies: ["Python", "PostgreSQL", "ETL"],
+      tags: ["Python", "PostgreSQL", "ETL"],
+      demoUrl: "",
+      deployUrl: "",
+      repoUrl: "https://github.com/anajufirmiano/pipeline-clima-postgresql"
     },
     {
-      id: 2,
-      title: "Gerenciador de Torneios & Tratamento Tabular",
-      category: "Dados",
-      tag: "Python & Pandas",
-      description: "Sistema de chaveamento e consolidação de participantes, manipulando tabelas relacionais e geração de relatórios com Pandas.",
-      technologies: ["Python", "Pandas", "CSV", "GitHub"],
-      demoUrl: "#",
-      repoUrl: "https://github.com/anajufirmiano"
+      id: "barbearia",
+      title: "Barbearia",
+      category: "Desenvolvimento Web",
+      tag: "Landing Page",
+      description: "Modelo conceitual de Landing Page para Barbearia com tabela de serviços e agendamento via WhatsApp (HTML5, CSS3 responsivo).",
+      technologies: ["HTML5", "CSS3", "JavaScript"],
+      tags: ["HTML5", "CSS3", "JavaScript"],
+      demoUrl: "",
+      deployUrl: "",
+      repoUrl: "https://github.com/anajufirmiano/barbearia"
     },
     {
-      id: 3,
-      title: "Interfaces Web & Landing Pages Responsivas",
-      category: "Web",
-      tag: "Desenvolvimento Web",
-      description: "Construção de aplicações e sites institucionais modernos, acessíveis, otimizados para todos os dispositivos e com código semântico limpo.",
-      technologies: ["HTML5", "CSS3", "JavaScript", "UI Design"],
-      demoUrl: "#",
-      repoUrl: "https://github.com/anajufirmiano"
+      id: "pizzaria",
+      title: "Pizzaria",
+      category: "Desenvolvimento Web",
+      tag: "Gastronomia & Delivery",
+      description: "Modelo de Landing Page conceitual para Pizzaria Napolitana e alta gastronomia (HTML5, CSS3 responsivo).",
+      technologies: ["HTML5", "CSS3", "JavaScript"],
+      tags: ["HTML5", "CSS3", "JavaScript"],
+      demoUrl: "",
+      deployUrl: "",
+      repoUrl: "https://github.com/anajufirmiano/pizzaria"
     },
     {
-      id: 4,
-      title: "Modelagem de Métricas & Relatórios no Excel",
-      category: "Analytics",
-      tag: "Excel Avançado",
-      description: "Planilhas analíticas dinâmicas, estruturadas com fórmulas complexas, tabelas de controle e painéis de indicadores visuais.",
-      technologies: ["Excel Avançado", "Fórmulas", "Automação", "Analytics"],
-      demoUrl: "#",
-      repoUrl: "https://github.com/anajufirmiano"
+      id: "anajufirmiano.github.io",
+      title: "Portfólio Pessoal",
+      category: "Desenvolvimento Web",
+      tag: "Portfólio Web",
+      description: "Portfólio Profissional de Ana Júlia Firmiano - Engenharia de Dados & Desenvolvimento Web com design escuro e responsivo.",
+      technologies: ["HTML5", "CSS3", "JavaScript"],
+      tags: ["HTML5", "CSS3", "JavaScript"],
+      demoUrl: "https://anajufirmiano.github.io/",
+      deployUrl: "https://anajufirmiano.github.io/",
+      repoUrl: "https://github.com/anajufirmiano/anajufirmiano.github.io"
     }
   ],
   socials: [
@@ -95,14 +103,17 @@ document.addEventListener("DOMContentLoaded", async () => {
   renderizarInterface();
   configurarEventos();
 
-  // 2. Tenta buscar projetos atualizados em segundo plano
+  // 2. Busca os projetos dinâmicos do projects.json em segundo plano
   await carregarProjetosExternos();
 });
 
 async function carregarProjetosExternos() {
   try {
     const response = await fetch("projects.json");
-    if (!response.ok) return;
+    if (!response.ok) {
+      console.warn(`[Portfólio] Falha ao carregar projects.json (Status HTTP ${response.status}). Mantendo dados padrão.`);
+      return;
+    }
 
     const json = await response.json();
     let listaProjetos = [];
@@ -113,13 +124,19 @@ async function carregarProjetosExternos() {
       listaProjetos = json.projects;
     }
 
-    // Se encontrou projetos válidos, atualiza apenas a lista de projetos e redesenha os cards
     if (listaProjetos.length > 0) {
       portfolioData.projects = listaProjetos;
-      renderizarProjetos(portfolioData.projects);
+
+      // Respeita o filtro ativo no momento
+      const activeBtn = document.querySelector(".filter-btn.active");
+      const filtroAtivo = activeBtn ? activeBtn.dataset.category : "all";
+      renderizarProjetos(portfolioData.projects, filtroAtivo);
+      console.log(`[Portfólio] Sucesso: ${listaProjetos.length} projetos carregados de projects.json.`);
+    } else {
+      console.warn("[Portfólio] projects.json carregado, mas a lista de projetos retornou vazia.");
     }
   } catch (err) {
-    console.warn("Mantendo dados locais padrão:", err);
+    console.error("[Portfólio] Erro na requisição ou parse de projects.json:", err);
   }
 }
 
@@ -181,50 +198,73 @@ function renderizarSkills(skills) {
   });
 }
 
+function normalizarCategoria(cat = "") {
+  const c = String(cat).toLowerCase().trim();
+  if (c.includes("dado") || c.includes("data") || c.includes("etl") || c.includes("sql") || c.includes("python")) {
+    return "dados";
+  }
+  if (c.includes("web") || c.includes("front") || c.includes("html") || c.includes("landing")) {
+    return "web";
+  }
+  return c;
+}
+
 function renderizarProjetos(projects, filtro = "all") {
   const container = document.getElementById("projectsContainer");
-  if (!container) return;
+  if (!container) {
+    console.error("[Portfólio] Elemento #projectsContainer não foi encontrado no DOM.");
+    return;
+  }
   container.innerHTML = "";
 
-  const lista = (projects || []).filter(p => {
-    if (filtro === "all") return true;
-    return (p.category || "").toLowerCase() === filtro.toLowerCase();
+  if (!Array.isArray(projects) || projects.length === 0) {
+    container.innerHTML = `<p class="empty-msg" style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px 0;">Nenhum projeto disponível no momento.</p>`;
+    return;
+  }
+
+  const lista = projects.filter(p => {
+    if (!filtro || filtro === "all") return true;
+    const catFiltro = normalizarCategoria(filtro);
+    const catProjeto = normalizarCategoria(p.category || "");
+    return catFiltro === catProjeto;
   });
+
+  if (lista.length === 0) {
+    container.innerHTML = `<p class="empty-msg" style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px 0;">Nenhum projeto encontrado nesta categoria.</p>`;
+    return;
+  }
 
   lista.forEach(project => {
     const techs = Array.isArray(project.technologies) 
       ? project.technologies 
       : (Array.isArray(project.tags) ? project.tags : []);
 
+    const mainTag = project.tag || (techs.length > 0 ? techs[0] : (project.category || "Projeto"));
+    const repoUrl = project.repoUrl || project.repo_url || project.github_url || "#";
+    const demoUrl = project.demoUrl || project.deployUrl || project.demo_url || "";
+    const thumbImg = (project.image && project.image !== "assets/img/default-cover.png") ? project.image : (project.thumbnail || "");
+
+    const fallbackVisual = `
+      <div class="visual-fallback">
+        <div class="visual-graphic-lines">
+          <div class="v-line w-80"></div>
+          <div class="v-line rose"></div>
+          <div class="v-line w-50"></div>
+        </div>
+        <span class="visual-badge-category">${project.category || "Geral"}</span>
+      </div>
+    `;
+
+    const visualContent = thumbImg
+      ? `<img src="${thumbImg}" alt="${project.title || "Projeto"}" class="project-thumb-img" onerror="this.parentElement.innerHTML = \`<div class='visual-fallback'><div class='visual-graphic-lines'><div class='v-line w-80'></div><div class='v-line rose'></div><div class='v-line w-50'></div></div><span class='visual-badge-category'>${project.category || 'Geral'}</span></div>\`;">`
+      : fallbackVisual;
+
     const el = document.createElement("div");
-    el.className = "project-card";
-    el.innerHTML = `
-      <div class="project-thumb-box">
-        <div class="project-thumb-top">
-          <div class="project-thumb-dots">
-            <span></span><span></span><span></span>
-          </div>
-          <span class="project-thumb-tag">${project.tag || project.category || "Projeto"}</span>
-        </div>
-        <div class="project-thumb-visual">
-          <div class="visual-graphic-lines">
-            <div class="v-line w-80"></div>
-            <div class="v-line rose"></div>
-            <div class="v-line w-50"></div>
-          </div>
-          <span class="visual-badge-category">${project.category || "Geral"}</span>
-        </div>
-      `
-       `
-        <div class="visual-fallback">
-          <div class="visual-graphic-lines">
-            <div class="v-line w-80"></div>
-            <div class="v-line rose"></div>
-            <div class="v-line w-50"></div>
-          </div>
-          <span class="visual-badge-category">${project.category || "Geral"}</span>
-        </div>
-      `;
+    el.className = "project-card card-clickable";
+    el.setAttribute("data-id", project.id);
+    el.addEventListener("click", () => {
+      abrirModal(project.id);
+    });
 
     el.innerHTML = `
       <div class="project-thumb-box">
@@ -247,21 +287,15 @@ function renderizarProjetos(projects, filtro = "all") {
       </div>
 
       <div class="project-actions">
-        <button class="link-btn open-modal-btn" data-id="${project.id}" onclick="event.stopPropagation();">
+        <button type="button" class="link-btn open-modal-btn" data-id="${project.id}" onclick="event.stopPropagation(); abrirModal('${project.id}');">
           Ver Detalhes &rarr;
         </button>
-        <a href="${project.repoUrl || '#'}" target="_blank" rel="noopener noreferrer" class="link-btn repo-btn" onclick="event.stopPropagation();">
+        <a href="${repoUrl}" target="_blank" rel="noopener noreferrer" class="link-btn repo-btn" onclick="event.stopPropagation();">
           Repositório
         </a>
       </div>
     `;
     container.appendChild(el);
-  });
-
-  document.querySelectorAll(".open-modal-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      abrirModal(btn.dataset.id);
-    });
   });
 }
 
@@ -283,7 +317,10 @@ function renderizarSociais(socials) {
 
 function abrirModal(id) {
   const projeto = portfolioData.projects.find(p => String(p.id) === String(id));
-  if (!projeto) return;
+  if (!projeto) {
+    console.warn(`[Portfólio] Projeto com ID "${id}" não encontrado para exibição no modal.`);
+    return;
+  }
 
   const modal = document.getElementById("projectModal");
   const content = document.getElementById("modalContent");
@@ -292,6 +329,9 @@ function abrirModal(id) {
   const techs = Array.isArray(projeto.technologies) 
     ? projeto.technologies 
     : (Array.isArray(projeto.tags) ? projeto.tags : []);
+
+  const demoUrl = projeto.demoUrl || projeto.deployUrl || projeto.demo_url || "";
+  const repoUrl = projeto.repoUrl || projeto.repo_url || projeto.github_url || "#";
 
   content.innerHTML = `
     <span class="section-tag">${projeto.category || "Projeto"} // ${projeto.tag || ""}</span>
@@ -305,9 +345,9 @@ function abrirModal(id) {
       </div>
     </div>
 
-    <div style="display: flex; gap: 14px; margin-top: 10px;">
-      ${demoUrl && demoUrl !== "#" ? `<a href="${demoUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Demonstração</a>` : ''}
-      <a href="${projeto.repoUrl || '#'}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Ver no GitHub</a>
+    <div style="display: flex; gap: 14px; margin-top: 10px; flex-wrap: wrap;">
+      ${demoUrl && demoUrl !== "#" ? `<a href="${demoUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Demonstração</a>` : ""}
+      <a href="${repoUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Ver no GitHub</a>
     </div>
   `;
 

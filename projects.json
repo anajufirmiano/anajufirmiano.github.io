@@ -3,115 +3,191 @@
     {
       "id": 1435048907,
       "title": "Pipeline Clima Postgresql",
-      "category": "Dados",
+      "category": "Engenharia de Dados",
       "tag": "Automação & ETL",
-      "description": "Projeto desenvolvido e disponibilizado no GitHub.",
+      "description": "Pipeline automatizado para coleta, ingestão e modelagem de dados meteorológicos em banco de dados PostgreSQL.",
       "technologies": [
-        "Python"
+        "Python",
+        "PostgreSQL",
+        "ETL"
       ],
-      "demoUrl": "#",
-      "repoUrl": "https://github.com/anajufirmiano/pipeline-clima-postgresql"
+      "tags": [
+        "Python",
+        "PostgreSQL",
+        "ETL"
+      ],
+      "demoUrl": "",
+      "deployUrl": "",
+      "repoUrl": "https://github.com/anajufirmiano/pipeline-clima-postgresql",
+      "image": "",
+      "featured": true
     },
     {
       "id": "barbearia",
       "title": "Barbearia",
       "category": "Desenvolvimento Web",
+      "tag": "Landing Page",
       "description": "Modelo conceitual de Landing Page para Barbearia com tabela de serviços e agendamento via WhatsApp (HTML5, CSS3 responsivo).",
-      "tags": [
-        "HTML"
+      "technologies": [
+        "HTML5",
+        "CSS3",
+        "JavaScript"
       ],
-      "repoUrl": "https://github.com/anajufirmiano/barbearia",
+      "tags": [
+        "HTML5",
+        "CSS3",
+        "JavaScript"
+      ],
+      "demoUrl": "",
       "deployUrl": "",
-      "image": "assets/img/default-cover.png",
+      "repoUrl": "https://github.com/anajufirmiano/barbearia",
+      "image": "",
       "featured": true
     },
     {
       "id": "pizzaria",
       "title": "Pizzaria",
       "category": "Desenvolvimento Web",
+      "tag": "Gastronomia & Delivery",
       "description": "Modelo de Landing Page conceitual para Pizzaria Napolitana e alta gastronomia (HTML5, CSS3 responsivo).",
-      "tags": [
-        "HTML"
+      "technologies": [
+        "HTML5",
+        "CSS3",
+        "JavaScript"
       ],
-      "repoUrl": "https://github.com/anajufirmiano/pizzaria",
+      "tags": [
+        "HTML5",
+        "CSS3",
+        "JavaScript"
+      ],
+      "demoUrl": "",
       "deployUrl": "",
-      "image": "assets/img/default-cover.png",
+      "repoUrl": "https://github.com/anajufirmiano/pizzaria",
+      "image": "",
       "featured": true
     },
     {
       "id": "anajufirmiano.github.io",
-      "title": "Anajufirmiano.Github.Io",
+      "title": "Portfólio Pessoal",
       "category": "Desenvolvimento Web",
-      "description": "Portfólio Profissional de Ana Júlia Firmiano - Engenharia de Dados & Desenvolvimento Web",
-      "tags": [
-        "CSS"
+      "tag": "Portfólio Web",
+      "description": "Portfólio Profissional de Ana Júlia Firmiano - Engenharia de Dados & Desenvolvimento Web com design escuro e responsivo.",
+      "technologies": [
+        "HTML5",
+        "CSS3",
+        "JavaScript"
       ],
-      "repoUrl": "https://github.com/anajufirmiano/anajufirmiano.github.io",
+      "tags": [
+        "HTML5",
+        "CSS3",
+        "JavaScript"
+      ],
+      "demoUrl": "https://anajufirmiano.github.io/",
       "deployUrl": "https://anajufirmiano.github.io/",
-      "image": "assets/img/default-cover.png",
+      "repoUrl": "https://github.com/anajufirmiano/anajufirmiano.github.io",
+      "image": "",
       "featured": true
     },
     {
       "id": "banco-de-dados-academia",
-      "title": "Banco De Dados Academia",
+      "title": "Banco de Dados Academia",
       "category": "Engenharia de Dados",
-      "description": "Modelagem e implementacao de banco de dados relacional em MySQL para gestao de academia.",
-      "tags": [],
-      "repoUrl": "https://github.com/anajufirmiano/banco-de-dados-academia",
+      "tag": "Modelagem SQL & MySQL",
+      "description": "Modelagem e implementação de banco de dados relacional em MySQL para gestão e controle de academia.",
+      "technologies": [
+        "SQL",
+        "MySQL",
+        "Modelagem Relacional"
+      ],
+      "tags": [
+        "SQL",
+        "MySQL",
+        "Modelagem Relacional"
+      ],
+      "demoUrl": "",
       "deployUrl": "",
-      "image": "assets/img/default-cover.png",
+      "repoUrl": "https://github.com/anajufirmiano/banco-de-dados-academia",
+      "image": "",
       "featured": true
     },
     {
       "id": "bibliotecas",
-      "title": "Bibliotecas",
+      "title": "Bibliotecas Utilitárias",
       "category": "Engenharia de Dados",
-      "description": "Biblioteca modular em Python para regras de negocio, validacoes cadastrais (CPF, CEP, Telefone, Cartao, Idade) e interface CLI.",
-      "tags": [
-        "Python"
+      "tag": "Módulos Python & CLI",
+      "description": "Biblioteca modular em Python para regras de negócio, validações cadastrais (CPF, CEP, Telefone, Cartão, Idade) e interface CLI.",
+      "technologies": [
+        "Python",
+        "CLI",
+        "Validação"
       ],
-      "repoUrl": "https://github.com/anajufirmiano/bibliotecas",
+      "tags": [
+        "Python",
+        "CLI",
+        "Validação"
+      ],
+      "demoUrl": "",
       "deployUrl": "",
-      "image": "assets/img/default-cover.png",
+      "repoUrl": "https://github.com/anajufirmiano/bibliotecas",
+      "image": "",
       "featured": true
     },
     {
       "id": "sistema-bancario",
-      "title": "Sistema Bancario",
+      "title": "Sistema Bancário",
       "category": "Engenharia de Dados",
-      "description": "Projeto desenvolvido para o portfólio.",
+      "tag": "Python & Regras de Negócio",
+      "description": "Sistema bancário simulado com operações de depósito, saque, emissão de extrato e validação cadastral.",
+      "technologies": [
+        "Python"
+      ],
       "tags": [
         "Python"
       ],
-      "repoUrl": "https://github.com/anajufirmiano/sistema-bancario",
+      "demoUrl": "",
       "deployUrl": "",
-      "image": "assets/img/default-cover.png",
+      "repoUrl": "https://github.com/anajufirmiano/sistema-bancario",
+      "image": "",
       "featured": true
     },
     {
       "id": "Sistemas-de-Artes-Marciais",
-      "title": "Sistemas De Artes Marciais",
+      "title": "Sistemas de Artes Marciais",
       "category": "Engenharia de Dados",
-      "description": "Trata-se de um script interativo em Python para terminal focado no cadastramento, matriculação e venda de equipamentos para alunos de academia de artes marciais (Jiu-Jitsu, Luta Livre Esportiva e Muay-Thai).",
-      "tags": [
-        "Python"
+      "tag": "Gestão & Automação CLI",
+      "description": "Script interativo em Python para terminal focado no cadastramento, matriculação e venda de equipamentos para alunos de artes marciais.",
+      "technologies": [
+        "Python",
+        "CLI"
       ],
-      "repoUrl": "https://github.com/anajufirmiano/Sistemas-de-Artes-Marciais",
+      "tags": [
+        "Python",
+        "CLI"
+      ],
+      "demoUrl": "",
       "deployUrl": "",
-      "image": "assets/img/default-cover.png",
+      "repoUrl": "https://github.com/anajufirmiano/Sistemas-de-Artes-Marciais",
+      "image": "",
       "featured": true
     },
     {
       "id": "gerador-de-senhas-python",
-      "title": "Gerador De Senhas Python",
+      "title": "Gerador de Senhas",
       "category": "Engenharia de Dados",
-      "description": "Gerador de senhas seguras em Python desenvolvido no terminal com suporte a caracteres especiais e validação de dados.",
-      "tags": [
-        "Python"
+      "tag": "Segurança & Utilitários",
+      "description": "Gerador de senhas seguras em Python desenvolvido no terminal com suporte a caracteres especiais e validação de entropia.",
+      "technologies": [
+        "Python",
+        "Segurança"
       ],
-      "repoUrl": "https://github.com/anajufirmiano/gerador-de-senhas-python",
+      "tags": [
+        "Python",
+        "Segurança"
+      ],
+      "demoUrl": "",
       "deployUrl": "",
-      "image": "assets/img/default-cover.png",
+      "repoUrl": "https://github.com/anajufirmiano/gerador-de-senhas-python",
+      "image": "",
       "featured": true
     }
   ]
