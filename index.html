@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="style.css?v=1.4">
+  <link rel="stylesheet" href="style.css?v=1.5">
 </head>
 <body>
 
@@ -167,16 +167,20 @@
       <div class="container">
         <div class="contact-card">
           <div class="contact-info">
-            <span class="section-tag">CONEXÃO // CONTATO</span>
-            <h2 class="section-title">Vamos conversar?</h2>
-            <p class="section-desc">Pronta para construir soluções web intuitivas ou estruturar projetos de automação e análise de dados.</p>
-            
-            <div class="contact-direct">
-              <span class="contact-direct-label">E-MAIL PROFISSIONAL</span>
-              <span class="contact-direct-email" id="contactEmailDisplay">anajuliafirmiano1@gmail.com</span>
+            <div class="contact-header">
+              <span class="section-tag">CONEXÃO // CONTATO</span>
+              <h2 class="section-title">Vamos conversar?</h2>
+              <p class="section-desc">Pronta para construir soluções web intuitivas ou estruturar projetos de automação e análise de dados.</p>
             </div>
+            
+            <div class="contact-channels">
+              <div class="contact-direct contact-direct-desktop">
+                <span class="contact-direct-label">E-MAIL PROFISSIONAL</span>
+                <span class="contact-direct-email" id="contactEmailDisplay">anajuliafirmiano1@gmail.com</span>
+              </div>
 
-            <div class="social-links" id="socialLinksContainer"></div>
+              <div class="social-links" id="socialLinksContainer"></div>
+            </div>
           </div>
 
           <!-- Formulário FormSubmit Integrado -->
@@ -193,7 +197,7 @@
               <label for="message">MENSAGEM OU PROJETO</label>
               <textarea id="message" name="message" class="form-control" rows="4" placeholder="Descreva brevemente sua necessidade..." required></textarea>
             </div>
-              <button type="submit" id="submitBtn" class="btn btn-primary btn-full">Enviar Mensagem</button>
+            <button type="submit" id="submitBtn" class="btn btn-primary btn-full">Enviar Mensagem</button>
           </form>
         </div>
       </div>
@@ -220,6 +224,6 @@
     <span id="toastMsg">Mensagem enviada com sucesso!</span>
   </div>
 
-  <script src="script.js?v=1.4"></script>
+  <script src="script.js?v=1.5"></script>
 </body>
 </html>

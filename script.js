@@ -303,6 +303,28 @@ function renderizarSociais(socials) {
   if (!container) return;
   container.innerHTML = "";
 
+  const emailAddr = portfolioData.profile.email || "anajuliafirmiano1@gmail.com";
+
+  // Pill compacta de E-mail (exibida no mobile lado a lado com GitHub e LinkedIn)
+  const emailA = document.createElement("a");
+  emailA.href = `mailto:${emailAddr}`;
+  emailA.className = "social-pill email-pill";
+  emailA.id = "emailPillBtn";
+  emailA.setAttribute("aria-label", "Enviar e-mail");
+  emailA.innerHTML = `
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -1px; margin-right: 5px;">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+      <polyline points="22,6 12,13 2,6"></polyline>
+    </svg>E-mail
+  `;
+  emailA.addEventListener("click", () => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(emailAddr);
+      exibirToast(`Abrindo e-mail (${emailAddr} copiado)!`);
+    }
+  });
+  container.appendChild(emailA);
+
   (socials || []).forEach(soc => {
     const a = document.createElement("a");
     a.href = soc.url;
@@ -366,6 +388,17 @@ function configurarEventos() {
     copyBtn.addEventListener("click", () => {
       navigator.clipboard.writeText(portfolioData.profile.email);
       exibirToast("E-mail copiado para a área de transferência!");
+    });
+  }
+
+  const emailDisplay = document.getElementById("contactEmailDisplay");
+  if (emailDisplay) {
+    emailDisplay.style.cursor = "pointer";
+    emailDisplay.title = "Clique para copiar o e-mail";
+    emailDisplay.addEventListener("click", () => {
+      const email = portfolioData.profile.email || "anajuliafirmiano1@gmail.com";
+      navigator.clipboard.writeText(email);
+      exibirToast(`E-mail copiado (${email})!`);
     });
   }
 

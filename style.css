@@ -743,7 +743,9 @@ a {
   color: var(--beige);
 }
 
-/* CONTATO */
+/* ==========================================================================
+   SEÇÃO CONTATO (DESKTOP)
+   ========================================================================== */
 .contact-card {
   background: linear-gradient(145deg, rgba(10, 51, 35, 0.6) 0%, rgba(5, 20, 14, 0.8) 100%);
   border: 1px solid var(--border-subtle);
@@ -755,6 +757,11 @@ a {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
 }
 
 .contact-direct {
@@ -778,6 +785,11 @@ a {
   font-size: 0.95rem;
   color: var(--beige);
   font-weight: 600;
+  transition: var(--transition);
+}
+
+.contact-direct-email:hover {
+  color: var(--rosy-brown);
 }
 
 .social-links {
@@ -794,12 +806,20 @@ a {
   border-radius: 999px;
   background: rgba(10, 51, 35, 0.4);
   transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .social-pill:hover {
   background: var(--midnight-green);
   border-color: var(--moss-green);
   transform: translateY(-2px);
+}
+
+/* No desktop, o botão pill de e-mail fica oculto pois já existe o bloco grande de e-mail */
+.email-pill {
+  display: none !important;
 }
 
 .contact-form {
@@ -1083,11 +1103,81 @@ a {
     gap: 12px;
   }
 
+  /* 1. Botões do Hero Lado a Lado na mesma linha no Mobile */
   .hero-actions {
     grid-area: actions;
     width: 100%;
     display: flex;
-    gap: 14px;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .hero-actions .btn {
+    flex: 1;
+    width: 50%;
+    text-align: center;
+    justify-content: center;
+    padding: 12px 14px;
+    font-size: 0.84rem;
+    white-space: nowrap;
+  }
+
+  /* 2. Reorganização da Seção Contato no Mobile */
+  .contact-card {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    gap: 22px;
+  }
+
+  .contact-info {
+    display: contents;
+  }
+
+  .contact-header {
+    order: 1;
+  }
+
+  .contact-form {
+    order: 2;
+    width: 100%;
+  }
+
+  .contact-channels {
+    order: 3;
+    width: 100%;
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-direct-desktop {
+    display: none !important;
+  }
+
+  .email-pill {
+    display: inline-flex !important;
+  }
+
+  .social-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .social-pill {
+    flex: 1;
+    min-width: 90px;
+    padding: 10px 12px;
+    font-size: 0.82rem;
+    text-align: center;
+    justify-content: center;
   }
 }
 
@@ -1097,13 +1187,6 @@ a {
   }
   .meta-card.span-2 {
     grid-column: span 1;
-  }
-  .hero-actions {
-    flex-direction: column;
-    width: 100%;
-  }
-  .hero-actions .btn {
-    width: 100%;
   }
 }
 
@@ -1176,6 +1259,39 @@ a {
   .hero-impact-phrase {
     font-size: 0.76rem;
     line-height: 1.28;
+  }
+
+  /* Botões do hero continuam lado a lado em telas muito pequenas */
+  .hero-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    flex: 1;
+    width: 50%;
+    padding: 10px 8px;
+    font-size: 0.78rem;
+    text-align: center;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+  .contact-card {
+    padding: 24px 16px;
+    gap: 18px;
+  }
+
+  .social-links {
+    gap: 8px;
+  }
+
+  .social-pill {
+    min-width: 80px;
+    padding: 8px 8px;
+    font-size: 0.78rem;
   }
 
   .nav-container {
