@@ -455,6 +455,8 @@ function configurarEventos() {
   }
 }
 
+let toastTimeout = null;
+
 function exibirToast(msg) {
   const toast = document.getElementById("toast");
   const msgEl = document.getElementById("toastMsg");
@@ -462,7 +464,10 @@ function exibirToast(msg) {
   msgEl.innerText = msg;
   toast.classList.remove("hidden");
 
-  setTimeout(() => {
+  if (toastTimeout) {
+    clearTimeout(toastTimeout);
+  }
+  toastTimeout = setTimeout(() => {
     toast.classList.add("hidden");
-  }, 3000);
+  }, 3200);
 }
