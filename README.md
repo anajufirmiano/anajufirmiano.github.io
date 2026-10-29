@@ -48,5 +48,5 @@ cd portifolio
 ## 📬 Contato
 
 - **E-mail:** [anajuliafirmiano1@gmail.com](mailto:anajuliafirmiano1@gmail.com)
-- **LinkedIn:** [Ana Júlia Ferreira Firmiano](https://www.linkedin.com/in/ana-júlia-ferreira-firmiano-454966258)
+- **LinkedIn:** [Ana Júlia Firmiano](https://www.linkedin.com/in/ana-júlia-firmiano-454966258)
 - **GitHub:** [@anajufirmiano](https://github.com/anajufirmiano)

@@ -65,77 +65,55 @@ a {
   text-decoration: none;
 }
 
-/* NAVBAR FLUTUANTE SEM FUNDO */
+/* ==========================================================================
+   NAVBAR FLUTUANTE COM FUNDO TRANSLÚCIDO ESTILO PILL
+   ========================================================================== */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 50;
   background: transparent;
   border-bottom: none;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  padding: 20px 0;
+  padding: 18px 0;
 }
 
 .nav-container {
-  width: 90%;
-  max-width: 1200px;
+  width: fit-content;
+  max-width: 92%;
   margin: 0 auto;
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 24px;
+  background: linear-gradient(135deg, rgba(10, 51, 35, 0.75) 0%, rgba(6, 26, 18, 0.88) 100%);
+  border: 1px solid rgba(131, 153, 88, 0.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 6px 8px 6px 22px;
+  border-radius: 999px;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(247, 244, 213, 0.08);
+  transition: var(--transition);
 }
 
-.nav-actions {
-  position: absolute;
-  right: 0;
-}
-
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Espaço entre a imagem e o texto */
-  text-decoration: none;
-}
-
-.logo-img {
-  height: 40px;      /* Defina a altura desejada */
-  width: auto;       /* Mantém a proporção correta */
-  object-fit: contain;
-  border-radius: 50%;  /*Opcional: use se quiser a imagem redonda */
-}
-
-.logo-box {
-  width: 38px;
-  height: 38px;
-  background: var(--midnight-green);
-  color: var(--beige);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  font-weight: 700;
-  font-family: var(--font-mono);
-  border: 1px solid var(--moss-green);
-  box-shadow: 0 0 15px rgba(16, 86, 102, 0.35);
-}
-
-.logo-text {
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  font-size: 1.05rem;
-  color: var(--beige);
+.nav-container:hover {
+  border-color: rgba(131, 153, 88, 0.45);
+  box-shadow: 0 12px 38px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(247, 244, 213, 0.12);
 }
 
 .nav-menu {
   display: flex;
-  gap: 32px;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
 }
 
 .nav-link {
   color: var(--text-secondary);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 500;
   transition: var(--transition);
 }
@@ -862,6 +840,34 @@ a {
   box-shadow: 0 0 14px rgba(211, 150, 140, 0.25);
 }
 
+.form-group textarea {
+  resize: none;
+  height: 120px;
+  min-height: 120px;
+  max-height: 120px;
+  overflow-y: auto;
+  line-height: 1.5;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(131, 153, 88, 0.4) transparent;
+}
+
+.form-group textarea::-webkit-scrollbar {
+  width: 5px;
+}
+
+.form-group textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.form-group textarea::-webkit-scrollbar-thumb {
+  background: rgba(131, 153, 88, 0.35);
+  border-radius: 999px;
+}
+
+.form-group textarea::-webkit-scrollbar-thumb:hover {
+  background: var(--moss-green);
+}
+
 /* MODAL & TOAST */
 .modal-overlay {
   position: fixed;
@@ -964,8 +970,7 @@ a {
     gap: 35px;
   }
   .nav-container {
-    gap: 16px;
-    justify-content: center;
+    gap: 20px;
   }
   .nav-menu {
     gap: 20px;
@@ -973,20 +978,20 @@ a {
 }
 
 @media (max-width: 768px) {
-  .nav-actions {
-    position: static;
-  }
   .nav-container {
-    flex-wrap: wrap;
-    gap: 14px;
-    justify-content: center;
+    width: fit-content;
+    gap: 16px;
+    padding: 5px 6px 5px 18px;
+  }
+  .nav-menu {
+    gap: 16px;
   }
 
   .hero-section {
     padding: 35px 0 50px 0;
   }
 
-  /* Disposição Mobile: Avatar lado a lado com Nome, Título, Disponibilidade E Frase de Efeito */
+  /* Disposição Mobile: Avatar alinhado lado a lado com Nome, Título, Disponibilidade E Frase de Efeito */
   .hero-grid {
     display: grid;
     grid-template-columns: minmax(110px, 140px) 1fr;
@@ -1104,13 +1109,14 @@ a {
 
 @media (max-width: 520px) {
   .nav-container {
-    gap: 12px;
+    gap: 14px;
+    padding: 5px 6px 5px 16px;
   }
   .nav-menu {
     gap: 14px;
   }
   .nav-link {
-    font-size: 0.82rem;
+    font-size: 0.84rem;
   }
 }
 
@@ -1174,14 +1180,20 @@ a {
 
   .nav-container {
     gap: 10px;
+    padding: 4px 6px 4px 14px;
   }
 
   .nav-menu {
-    gap: 12px;
+    gap: 10px;
   }
 
   .nav-link {
     font-size: 0.8rem;
+  }
+
+  .nav-actions .btn-sm {
+    padding: 6px 12px;
+    font-size: 0.76rem;
   }
 }
 

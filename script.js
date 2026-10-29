@@ -73,7 +73,7 @@ const dadosPadrao = {
   ],
   socials: [
     { name: "GitHub", url: "https://github.com/anajufirmiano" },
-    { name: "LinkedIn", url: "https://www.linkedin.com/in/ana-júlia-ferreira-firmiano-454966258" }
+    { name: "LinkedIn", url: "https://www.linkedin.com/in/ana-júlia-firmiano-454966258" }
   ]
 };
 
