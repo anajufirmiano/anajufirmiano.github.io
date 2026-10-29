@@ -172,7 +172,10 @@ function renderizarInterface() {
   setText("metricProjects", profile.completedProjects);
   setText("metricSat", profile.satisfaction);
   setText("contactEmailDisplay", profile.email);
-  setText("footerCopy", `© ${new Date().getFullYear()} ${profile.name}. Todos os direitos reservados.`);
+  const footerEl = document.getElementById("footerCopy");
+  if (footerEl) {
+    footerEl.innerHTML = `&copy; ${new Date().getFullYear()} ${profile.name}.<br class="mobile-only"> Todos os direitos reservados.`;
+  }
 
   renderizarSkills(skills || []);
   renderizarProjetos(projects || []);
