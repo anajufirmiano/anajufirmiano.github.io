@@ -288,10 +288,10 @@ function renderizarProjetos(projects, filtro = "all") {
         <button type="button" class="link-btn open-modal-btn" data-id="${project.id}" onclick="event.stopPropagation(); abrirModal('${project.id}');">
           Ver Detalhes &rarr;
         </button>
-        <div class="project-links-group" style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
-          ${hasSite ? `<a href="${siteUrl}" target="_blank" rel="noopener noreferrer" class="link-btn site-btn" onclick="event.stopPropagation();">Acessar Site &nearr;</a>` : ""}
-          <a href="${repoUrl}" target="_blank" rel="noopener noreferrer" class="link-btn repo-btn" onclick="event.stopPropagation();">Repositório</a>
-        </div>
+        ${hasSite 
+          ? `<a href="${siteUrl}" target="_blank" rel="noopener noreferrer" class="link-btn site-btn" onclick="event.stopPropagation();">Acessar Site &nearr;</a>`
+          : `<a href="${repoUrl}" target="_blank" rel="noopener noreferrer" class="link-btn repo-btn" onclick="event.stopPropagation();">Repositório &nearr;</a>`
+        }
       </div>
     `;
     container.appendChild(el);
@@ -329,9 +329,7 @@ function abrirModal(id) {
     ? projeto.technologies 
     : (Array.isArray(projeto.tags) ? projeto.tags : []);
 
-  const siteUrl = projeto.demoUrl || projeto.deployUrl || projeto.demo_url || "";
   const repoUrl = projeto.repoUrl || projeto.repo_url || projeto.github_url || "#";
-  const hasSite = Boolean(siteUrl && siteUrl.trim() !== "" && siteUrl !== "#");
 
   content.innerHTML = `
     <span class="section-tag">${projeto.category || "Projeto"} // ${projeto.tag || ""}</span>
@@ -346,8 +344,7 @@ function abrirModal(id) {
     </div>
 
     <div style="display: flex; gap: 14px; margin-top: 10px; flex-wrap: wrap;">
-      ${hasSite ? `<a href="${siteUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Acessar Site</a>` : ""}
-      <a href="${repoUrl}" target="_blank" rel="noopener noreferrer" class="btn ${hasSite ? 'btn-secondary' : 'btn-primary'} btn-sm">Ver no GitHub</a>
+      <a href="${repoUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Ver no GitHub</a>
     </div>
   `;
 
